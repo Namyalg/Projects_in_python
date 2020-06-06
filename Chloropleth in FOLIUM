@@ -1,0 +1,26 @@
+import pandas as pd
+import os
+import folium
+
+state_geo = 'us-states.json'
+
+state_unemployment = 'US_COVID.csv'
+state_data = pd.read_csv(state_unemployment)
+
+map = folium.Map(location=[48, -102], zoom_start=3)
+
+folium.Choropleth(
+    geo_data=state_geo,
+    name='choropleth',
+    data=state_data,
+    columns=['State', 'Cases'],
+    key_on='feature.id',
+    fill_color='YlOrRd',
+    fill_opacity=0.8,
+    line_opacity=0.4,
+    legend_name='Covid Cases(%)'
+).add_to(m)
+
+folium.LayerControl().add_to(m)
+
+map
