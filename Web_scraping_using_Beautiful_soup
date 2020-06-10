@@ -1,0 +1,69 @@
+import pandas as pd
+import re
+import requests
+from bs4 import BeautifulSoup 
+import csv
+
+
+def book_details():
+  names = ["BOOKS"]
+  ratings = ["RATINGS"]
+  authors = ["AUTHORS"]
+  prices = ["PRICE"]
+  positions = ["POPULARITY"]
+  no_of_reviews = ["NUMBER OF REVIEWS"]
+  urls = []
+
+  #There are 2 pages that are being scraped
+  pgNo = 1
+  
+  while pgNo < 3:
+    
+    url = "https://www.amazon.in/gp/bestsellers/books/ref=zg_bs_pg_"+str(pgNo)+"?ie=UTF8&pg="+str(pgNo)
+    
+    #The URL that is scraped 
+    
+    pgNo += 1
+    req = requests.get(url)
+    soup = BeautifulSoup(req.content , "html.parser")
+
+    for d in soup.findAll('ol', attrs={'class':"a-ordered-list a-vertical" , "id": "zg-ordered-list" ,"role" : "grid"}):
+      for tag in d.find_all(re.compile("^li")):
+        bookname = tag.find('div' , attrs={"aria-hidden":"true","class":"p13n-sc-truncate p13n-sc-line-clamp-1" , "data-rows":"1"} )
+        rating = tag.find('span' , attrs = {"class":"a-icon-alt"})
+        price = tag.find('span' , attrs = {"class" :'p13n-sc-price'} )
+        author = tag.find('a' , attrs = {"class" : "a-size-small a-link-child"})
+        position = tag.find('span' , attrs={"class": 'zg-badge-text'})
+        review = tag.find('a' , attrs={"class" :"a-size-small a-link-normal"})
+        names.append(str(bookname.string).lstrip(' ').replace('\n' , ''))
+        positions.append(position.string)          
+        if review == None:
+          no_of_reviews.append("NA")
+        else:
+          no_of_reviews.append(str(review.text).replace('\xa0', ""))
+        if price == None:
+          prices.append("NA")
+        else:
+          prices.append(str(price.string)[1:].replace('\xa0' , ""))
+        if author == None:
+          authors.append("NA")
+        else:
+          authors.append(author.string)
+        if rating == None:
+          ratings.append("NA")
+        else:
+          ratings.append(str(rating.text).replace('\xa0', ""))
+
+    for i,j in enumerate(names):
+      names[i] = names[i].strip(' ')
+  details = (list(zip(positions ,names , authors , ratings , prices , no_of_reviews)))
+  
+  return(details)
+
+#The contents are written into a CSV file
+
+with open('Top100books.csv', 'w') as f:
+    writer = csv.writer(f , lineterminator='\n')
+    for tup in book_details():
+        writer.writerow(tup)
+        
