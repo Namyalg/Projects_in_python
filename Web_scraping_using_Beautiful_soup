@@ -4,6 +4,19 @@ import requests
 from bs4 import BeautifulSoup 
 import csv
 
+#returns a list of all the genres 
+
+def all_topics():
+   alltopics = []
+   url = "https://www.amazon.in/gp/bestsellers/books/ref=zg_bs_pg_1?ie=UTF8&pg=1
+   req = requests.get(url)
+   soup = BeautifulSoup(req.content , "html.parser")
+   for d in soup.findAll('div', attrs={'class':"a-fixed-left-grid-col a-col-left"}):
+    d = d.find('ul').find('ul')
+    for tag in d.find_all(re.compile("^a")):
+      alltopics.append(str(tag.string))
+   return(alltopics)
+
 
 def book_details():
   names = ["BOOKS"]
