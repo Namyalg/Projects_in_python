@@ -25,7 +25,7 @@ def book_details():
   prices = ["PRICE"]
   positions = ["POPULARITY"]
   no_of_reviews = ["NUMBER OF REVIEWS"]
-  urls = []
+  image_urls = ["LINKS TO THE COVER OF THE BOOK"]
 
   #There are 2 pages that are being scraped
   pgNo = 1
@@ -49,7 +49,12 @@ def book_details():
         position = tag.find('span' , attrs={"class": 'zg-badge-text'})
         review = tag.find('a' , attrs={"class" :"a-size-small a-link-normal"})
         names.append(str(bookname.string).lstrip(' ').replace('\n' , ''))
-        positions.append(position.string)          
+        positions.append(position.string)
+        img_url = tag.find('div' , attrs={"class":"a-section a-spacing-small"})
+        if img_url.find('img') == None:
+          image_urls.append("NA")
+        else:
+          image_urls.append(img_url.find('img').get('src'))
         if review == None:
           no_of_reviews.append("NA")
         else:
@@ -69,7 +74,7 @@ def book_details():
 
     for i,j in enumerate(names):
       names[i] = names[i].strip(' ')
-  details = (list(zip(positions ,names , authors , ratings , prices , no_of_reviews)))
+  details = (list(zip(positions ,names , authors , ratings , prices , no_of_reviews , image_urls)))
   
   return(details)
 
