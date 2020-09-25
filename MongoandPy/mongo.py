@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://<username>:<password>@cluster0.ireie.mongodb.net/add_user?retryWrites=true&w=majority')
+client = MongoClient('MONGO URI')
 
 app = Flask(__name__)
 
