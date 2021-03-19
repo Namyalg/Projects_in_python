@@ -63,7 +63,7 @@ parsel==1.6.0
 parso==0.7.0
 pexpect==4.8.0
 pickleshare==0.7.5
-Pillow==7.2.0
+Pillow==8.1.1
 pip-tools==5.2.1
 placebo==0.9.0
 pprint==0.1
