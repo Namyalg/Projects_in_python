@@ -49,7 +49,7 @@ ipython-genutils==0.2.0
 itemadapter==0.1.0
 itsdangerous==1.1.0
 jedi==0.17.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 jmespath==0.10.0
 jwcrypto==0.7
 kappa==0.6.0
