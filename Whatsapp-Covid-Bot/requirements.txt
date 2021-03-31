@@ -53,7 +53,7 @@ Jinja2==2.11.2
 jmespath==0.10.0
 jwcrypto==0.7
 kappa==0.6.0
-lxml==4.6.2
+lxml==4.6.3
 markovmeme==0.0.1
 newsapi-python==0.2.6
 notify2==0.3.1
