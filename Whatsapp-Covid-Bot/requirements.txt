@@ -44,7 +44,7 @@ hyperlink==19.0.0
 importlib-metadata==1.7.0
 incremental==17.5.0
 insult==0.4
-ipython==7.15.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 itemadapter==0.1.0
 itsdangerous==1.1.0
