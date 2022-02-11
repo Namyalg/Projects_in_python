@@ -70,7 +70,7 @@ pprint==0.1
 prettyprinter==0.18.0
 prompt-toolkit==3.0.5
 Protego==0.1.16
-protobuf==3.12.2
+protobuf==3.15.0
 ptyprocess==0.6.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
