@@ -111,7 +111,7 @@ tqdm==4.48.0
 traitlets==4.3.3
 troposphere==2.6.2
 twilio==6.44.1
-Twisted==20.3.0
+Twisted==22.4.0
 twython==3.8.2
 tzlocal==2.1
 uritemplate==3.0.1
