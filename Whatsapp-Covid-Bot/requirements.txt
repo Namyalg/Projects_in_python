@@ -88,7 +88,7 @@ python-dateutil==2.6.1
 python-docx==0.8.10
 python-firebase==1.2
 python-http-client==3.2.7
-python-jwt==3.2.6
+python-jwt==3.3.4
 python-slugify==4.0.1
 python-telegram-bot==12.7
 PyYAML==5.3.1
